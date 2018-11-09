@@ -49,4 +49,18 @@ public class User
     @Column(name = "password", nullable = false)
     private String password;
 
+
+    public User()
+    {
+    }
+
+    public User(String username, @NotNull(message = "First name must not be null") @NotEmpty String firstName, @NotNull(message = "Last name must not be null") @NotEmpty String lastName, @NotNull(message = "Email must not be null") @NotEmpty String email, @NotNull(message = "Address must not be null") @NotEmpty String address, @NotNull(message = "Address must not be null") @NotEmpty String password)
+    {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.password = password;
+    }
 }

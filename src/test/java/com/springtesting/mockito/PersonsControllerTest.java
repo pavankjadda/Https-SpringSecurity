@@ -41,6 +41,7 @@ public class PersonsControllerTest
         List<Person> personList = Arrays.asList(john, alex, jack);
 
         given(personService.getPersons()).willReturn(personList);
-        mockMvc.perform(get("/api/persons").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(3))).andExpect(jsonPath("$[0].id", CoreMatchers.is(john.getId()))).andExpect(jsonPath("$[1].id", CoreMatchers.is(alex.getId()))).andExpect(jsonPath("$[2].id", CoreMatchers.is(jack.getId())));
+        mockMvc.perform(get("/api/persons").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3))).andExpect(jsonPath("$[0].id", CoreMatchers.is(john.getId()))).andExpect(jsonPath("$[1].id", CoreMatchers.is(alex.getId()))).andExpect(jsonPath("$[2].id", CoreMatchers.is(jack.getId())));
     }
 }
