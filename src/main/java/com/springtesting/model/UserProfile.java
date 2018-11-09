@@ -14,8 +14,9 @@ import java.util.List;
 public class UserProfile
 {
 
-    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
-    private User user;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
 
     @NotNull(message = "First name must not be null")
@@ -41,6 +42,7 @@ public class UserProfile
     private List<Address> addresses=new ArrayList<>();
 
 
-
-
+    @OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
