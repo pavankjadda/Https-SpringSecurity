@@ -21,46 +21,25 @@ public class User
     @Column(name = "username")
     private String username;
 
-    @NotNull(message = "First name must not be null")
-    @NotEmpty
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-
-    @NotNull(message = "Last name must not be null")
-    @NotEmpty
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
-
-    @NotNull(message = "Email must not be null")
-    @NotEmpty
-    @Column(name = "email", nullable = false)
-    private String email;
-
-
-    @NotNull(message = "Address must not be null")
-    @NotEmpty
-    @Column(name = "address", nullable = false)
-    private String address;
 
     @NotNull(message = "Address must not be null")
     @NotEmpty
     @Column(name = "password", nullable = false)
     private String password;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private UserProfile userProfile;
+
 
     public User()
     {
+
     }
 
-    public User(String username, @NotNull(message = "First name must not be null") @NotEmpty String firstName, @NotNull(message = "Last name must not be null") @NotEmpty String lastName, @NotNull(message = "Email must not be null") @NotEmpty String email, @NotNull(message = "Address must not be null") @NotEmpty String address, @NotNull(message = "Address must not be null") @NotEmpty String password)
+    public User(String username, @NotNull(message = "Address must not be null") @NotEmpty String password, UserProfile userProfile)
     {
         this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.address = address;
         this.password = password;
+        this.userProfile = userProfile;
     }
 }
