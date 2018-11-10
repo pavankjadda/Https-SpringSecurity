@@ -17,4 +17,9 @@ public class AddressType
     @Column(name = "address_type")
     @NonNull
     private String addressType;
+
+    public AddressType()
+    {
+
+    }
 }

@@ -36,5 +36,18 @@ public class Address
     @JoinColumn(name = "address_type_id")
     private AddressType addressType;
 
+    public Address()
+    {
+    }
 
+    public Address(String streetName, String apartment, String city, String state, String country, String zipCode, AddressType addressType)
+    {
+        this.streetName = streetName;
+        this.apartment = apartment;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.zipCode = zipCode;
+        this.addressType = addressType;
+    }
 }
