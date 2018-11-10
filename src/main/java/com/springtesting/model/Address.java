@@ -12,7 +12,8 @@ public class Address
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "address_id")
+    private Long addressId;
 
     @Column(name = "street_name")
     private String streetName;

@@ -1,10 +1,5 @@
 package com.springtesting.mockito.springbootmysqltests;
 
-import java.util.Properties;
-
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,22 +12,25 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+import java.util.Properties;
+
 @Configuration
-@EnableJpaRepositories(basePackages = { "com.springtesting.repo","com.springtesting.model" })
+@EnableJpaRepositories(basePackages = {"com.springtesting.repo", "com.springtesting.model"})
 @PropertySource("classpath:springtesting-mysql.properties")
 @EnableTransactionManagement
 public class MysqlJpaConfig
 {
-
     @Autowired
     private Environment env;
 
     @Bean
     public DataSource dataSource()
     {
-        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        //dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl(env.getProperty("spring.datasource.url"));
+        //dataSource.setDriverClassName(env.getProperty("spring.datasource.driverClassName"));
         dataSource.setUsername(env.getProperty("spring.datasource.username"));
         dataSource.setPassword(env.getProperty("spring.datasource.password"));
         return dataSource;
@@ -45,7 +43,7 @@ public class MysqlJpaConfig
         em.setDataSource(dataSource());
         em.setPackagesToScan("com.springtesting.model");
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        //em.setJpaProperties(additionalProperties());
+        em.setJpaProperties(additionalProperties());
         return em;
     }
 
@@ -57,13 +55,12 @@ public class MysqlJpaConfig
         return transactionManager;
     }
 
-    final Properties additionalProperties()
+    private Properties additionalProperties()
     {
-        final Properties hibernateProperties = new Properties();
-
+        Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-        hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
         hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 
         return hibernateProperties;
     }
