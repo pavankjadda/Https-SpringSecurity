@@ -1,4 +1,4 @@
-package com.springtesting.mockito;
+package com.springtesting.mockito.springbootmysqltests;
 
 import java.util.Properties;
 
@@ -18,10 +18,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories(basePackages = { "com.springtesting.repo" })
-@PropertySource("classpath:application-integrationtest.properties")
+@EnableJpaRepositories(basePackages = { "com.springtesting.repo","com.springtesting.model" })
+@PropertySource("classpath:springtesting-mysql.properties")
 @EnableTransactionManagement
-public class H2JpaConfig
+public class MysqlJpaConfig
 {
 
     @Autowired
@@ -35,17 +35,17 @@ public class H2JpaConfig
         dataSource.setUrl(env.getProperty("spring.datasource.url"));
         dataSource.setUsername(env.getProperty("spring.datasource.username"));
         dataSource.setPassword(env.getProperty("spring.datasource.password"));
-
         return dataSource;
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory()
+    {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "com.springtesting.model" });
+        em.setPackagesToScan("com.springtesting.model");
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        em.setJpaProperties(additionalProperties());
+        //em.setJpaProperties(additionalProperties());
         return em;
     }
 

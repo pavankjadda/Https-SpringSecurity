@@ -32,7 +32,7 @@ public class Address
     @Column(name = "zip_code")
     private String zipCode;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_type_id")
     private AddressType addressType;
 
