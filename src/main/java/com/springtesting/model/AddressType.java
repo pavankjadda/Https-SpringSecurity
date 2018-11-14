@@ -12,8 +12,8 @@ public class AddressType
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "address_type_id")
-    private Long addressTypeId;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "type")
     @NonNull
