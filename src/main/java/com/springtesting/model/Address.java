@@ -34,7 +34,7 @@ public class Address
     private String zipCode;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_type_id")
+    @JoinColumn(name = "address_type_id",referencedColumnName = "id")
     private AddressType addressType;
 
     public Address()
