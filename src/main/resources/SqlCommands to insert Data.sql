@@ -15,9 +15,9 @@ INSERT INTO `springtesting`.`category`(`id`,`name`) VALUES('cat1001','Books');
 
 
 /* Insert Data into Product Table  */
-INSERT INTO `springtesting`.`product`(`id`,`name`,`category_id`) VALUES('p1001','iPhoneX',1003);
-INSERT INTO `springtesting`.`product`(`id`,`name`,`category_id`) VALUES('p1002','GalaxyS10',1003);
-INSERT INTO `springtesting`.`product`(`id`,`name`,`category_id`) VALUES('p1003','Google Pixel',1003);
+INSERT INTO `springtesting`.`product`(`id`,`name`,`category_id`) VALUES('p1001','iPhoneX','cat1003');
+INSERT INTO `springtesting`.`product`(`id`,`name`,`category_id`) VALUES('p1002','GalaxyS10','cat1003');
+INSERT INTO `springtesting`.`product`(`id`,`name`,`category_id`) VALUES('p1003','Google Pixel','cat1003');
 
 
 

@@ -2,7 +2,7 @@ package com.springtesting.mockito;
 
 import com.springtesting.model.Person;
 import com.springtesting.service.PersonService;
-import com.springtesting.web.GenericController;
+import com.springtesting.web.ApiController;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(GenericController.class)
+@WebMvcTest(ApiController.class)
 public class PersonsControllerTest
 {
     @Autowired

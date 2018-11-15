@@ -1,5 +1,9 @@
 package com.springtesting.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,6 +25,8 @@ public class User
     @Column(name = "username")
     private String username;
 
+    @Column
+    private Boolean active;
 
     @NotNull(message = "Address must not be null")
     @NotEmpty
@@ -29,6 +35,7 @@ public class User
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     @JoinColumn(name = "user_profile_id")
+    @JsonManagedReference
     private UserProfile userProfile;
 
 
@@ -37,10 +44,11 @@ public class User
 
     }
 
-    public User(String username, @NotNull(message = "Address must not be null") @NotEmpty String password, UserProfile userProfile)
+    public User(String username, @NotNull(message = "Address must not be null") @NotEmpty String password, Boolean active, UserProfile userProfile)
     {
         this.username = username;
         this.password = password;
+        this.active = active;
         this.userProfile = userProfile;
     }
 }
