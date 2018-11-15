@@ -28,29 +28,26 @@ public class AddressRepositoryTest
     private AddressTypeRepository addressTypeRepository;
 
 
-    @Autowired
-    private JpaTransactionManager jpaTransactionManager;
-
     @Test
     public void createPerson()
     {
         Address address=new Address();
         AddressType addressType = findOrCreateAddressType("Home");
-        address.setStreetName("3130 Fair");
+        address.setStreetName("3130 Fairview park");
+        address.setApartment("STE 350");
         address.setCity("Fairfax");
         address.setState("VA");
         address.setCountry("USA");
         address.setAddressType(addressType);
         address=addressRepository.saveAndFlush(address);
+
+        System.out.println("Inserted Address -> "+address.toString());
     }
 
     private AddressType findOrCreateAddressType(String type)
     {
         Optional<AddressType> addressTypeOptional=addressTypeRepository.findAddressTypeByType(type);
-        if(addressTypeOptional.isPresent())
-            return addressTypeOptional.get();
-        else
-            return addressTypeRepository.saveAndFlush(new AddressType(type));
+        return addressTypeOptional.orElseGet(() -> addressTypeRepository.saveAndFlush(new AddressType(type)));
 
     }
 

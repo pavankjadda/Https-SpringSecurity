@@ -15,8 +15,7 @@ public class AddressType
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "type")
-    @NonNull
+    @Column(name = "type",nullable = false)
     private String type;
 
     public AddressType()
