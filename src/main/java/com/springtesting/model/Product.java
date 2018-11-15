@@ -34,7 +34,7 @@ public class Product implements Serializable
     private List<Price> priceList=new ArrayList<>();
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "productlist")
+    @ManyToMany(mappedBy = "productList")
     private List<OrderDetail> ordersList =new ArrayList<OrderDetail>();
 
 

@@ -36,7 +36,7 @@ public class OrderDetail
             name = "order_detail_productlist",
             joinColumns = @JoinColumn(name = "order_detail_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "productlist_id", referencedColumnName = "id"))
-    private List<Product> productsList = new ArrayList<>();
+    private List<Product> productList = new ArrayList<>();
 
 
     public OrderDetail() {}
@@ -51,13 +51,13 @@ public class OrderDetail
         this.address = address;
     }
 
-    public OrderDetail(String id, OrderStatus orderStatus, UserProfile purchasedBy, Address address, LocalDateTime localDateTime, List<Product> productsList)
+    public OrderDetail(String id, OrderStatus orderStatus, UserProfile purchasedBy, Address address, LocalDateTime localDateTime, List<Product> productList)
     {
         this.id = id;
         this.orderStatus = orderStatus;
         this.purchasedBy = purchasedBy;
         this.address = address;
         this.localDateTime = localDateTime;
-        this.productsList = productsList;
+        this.productList = productList;
     }
 }
