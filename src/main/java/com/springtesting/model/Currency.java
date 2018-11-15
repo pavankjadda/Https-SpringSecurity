@@ -1,4 +1,4 @@
-package com.springtesting.model.orderhistory;
+package com.springtesting.model;
 
 
 import lombok.Data;
@@ -22,4 +22,14 @@ public class Currency
 
     @Column(name = "iso_code")
     private String isoCode;
+
+
+    public Currency() {};
+
+    public Currency(String name, String symbol, String isoCode)
+    {
+        this.name = name;
+        this.symbol = symbol;
+        this.isoCode = isoCode;
+    }
 }

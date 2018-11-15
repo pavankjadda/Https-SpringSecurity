@@ -1,18 +1,13 @@
 package com.springtesting.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -22,8 +17,6 @@ public class Product implements Serializable
     @Id
     private String id;
 
-    @NotNull(message = "Product name must not be null")
-    @NotEmpty
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -33,14 +26,24 @@ public class Product implements Serializable
 
     @ManyToMany
     @JoinTable(
-        name = "product_prices",
+        name = "product_price",
         joinColumns = @JoinColumn(name = "product_id",referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "price_id",referencedColumnName = "id")
         )
     @JsonManagedReference
-    private Set<Price> priceSet=new HashSet<>();
+    private List<Price> priceList=new ArrayList<>();
 
     @JsonIgnore
     @ManyToMany(mappedBy = "productlist")
-    private List<OrderDetail> orderDetail =new ArrayList<OrderDetail>();
+    private List<OrderDetail> ordersList =new ArrayList<OrderDetail>();
+
+
+    public Product() {};
+
+    public Product(String id, String name, Category category)
+    {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+    }
 }

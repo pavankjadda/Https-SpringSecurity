@@ -1,12 +1,11 @@
 package com.springtesting.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.springtesting.model.orderhistory.Currency;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "price")
@@ -26,6 +25,16 @@ public class Price
 
     @ManyToMany
     @JsonBackReference
-    private Set<Product> productSet=new HashSet<>();
+    private List<Product> productList=new ArrayList<>();
 
+
+    public Price()
+    {
+    }
+
+    public Price(Currency currency, Double amount)
+    {
+        this.currency = currency;
+        this.amount = amount;
+    }
 }

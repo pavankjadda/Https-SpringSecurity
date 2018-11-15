@@ -1,6 +1,5 @@
 package com.springtesting.model.orderhistory;
 
-import com.springtesting.model.*;
 import lombok.Data;
 
 import javax.persistence.*;

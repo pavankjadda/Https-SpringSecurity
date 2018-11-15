@@ -1,8 +1,12 @@
 package com.springtesting.mockito;
 
 
-import com.springtesting.model.*;
-import com.springtesting.repo.*;
+import com.springtesting.model.OrderDetail;
+import com.springtesting.model.OrderDetailProduct;
+import com.springtesting.model.UserProfile;
+import com.springtesting.repo.OrderDetailProductRepository;
+import com.springtesting.repo.OrderDetailRepository;
+import com.springtesting.repo.UserProfileRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

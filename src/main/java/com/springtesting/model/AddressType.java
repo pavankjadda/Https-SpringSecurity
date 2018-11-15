@@ -1,7 +1,6 @@
 package com.springtesting.model;
 
 import lombok.Data;
-import lombok.NonNull;
 
 import javax.persistence.*;
 
