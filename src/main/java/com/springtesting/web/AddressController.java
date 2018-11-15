@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(name = "/address")
+@RequestMapping(path = "/address")
 public class AddressController
 {
 
