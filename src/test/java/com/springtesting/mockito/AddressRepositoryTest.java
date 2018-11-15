@@ -1,7 +1,5 @@
 package com.springtesting.mockito;
 
-import com.springtesting.SpringtestingApplication;
-import com.springtesting.mockito.springbootmysqltests.MysqlJpaConfig;
 import com.springtesting.model.Address;
 import com.springtesting.model.AddressType;
 import com.springtesting.repo.AddressRepository;
@@ -11,17 +9,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
