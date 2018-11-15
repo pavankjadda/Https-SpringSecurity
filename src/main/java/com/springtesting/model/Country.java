@@ -1,5 +1,7 @@
 package com.springtesting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.org.apache.xalan.internal.xsltc.StripFilter;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -23,18 +25,24 @@ public class Country
     private String name;
 
     @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<State> cities=new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "region_id")
+    @JsonIgnore
     private Region region;
 
     public Country() {};
 
-    public Country(@Length(max = 100, min = 2) String name, Set<State> cities, Region region)
+    public Country(String name)
+    {
+        this.name=name;
+    }
+
+    public Country(@Length(max = 100, min = 2) String name, Region region)
     {
         this.name = name;
-        this.cities = cities;
         this.region = region;
     }
 }

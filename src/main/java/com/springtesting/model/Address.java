@@ -1,5 +1,6 @@
 package com.springtesting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,7 +10,6 @@ import javax.persistence.*;
 @Table(name = "address")
 public class Address
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -21,14 +21,21 @@ public class Address
     @Column(name = "apartment")
     private String apartment;
 
-    @Column(name = "city")
-    private String city;
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
 
-    @Column(name = "state")
-    private String state;
+    @ManyToOne
+    @JoinColumn(name = "state_id")
+    private State state;
 
-    @Column(name = "country")
-    private String country;
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
+
+    @ManyToOne
+    @JoinColumn(name = "region_id")
+    private Region region;
 
     @Column(name = "zip_code")
     private String zipCode;
@@ -37,11 +44,9 @@ public class Address
     @JoinColumn(name = "address_type_id",referencedColumnName = "id")
     private AddressType addressType;
 
-    public Address()
-    {
-    }
+    public Address() { }
 
-    public Address(String streetName, String apartment, String city, String state, String country, String zipCode, AddressType addressType)
+    public Address(String streetName, String apartment, City city, State state, Country country, String zipCode, AddressType addressType)
     {
         this.streetName = streetName;
         this.apartment = apartment;

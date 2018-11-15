@@ -34,9 +34,6 @@ public class EntityManagerAddressRepositoryTest
         Address address=new Address();
         AddressType addressType = findOrCreateAddressType("Home");
         address.setStreetName("3130 Fair");
-        address.setCity("Fairfax");
-        address.setState("VA");
-        address.setCountry("USA");
         address.setAddressType(addressType);
 
         saveOrMergeAddress(address);
