@@ -1,4 +1,4 @@
-package com.springtesting.mockito;
+package com.springtesting.mockito.integrationtests;
 
 import com.springtesting.SpringtestingApplication;
 import com.springtesting.model.Person;

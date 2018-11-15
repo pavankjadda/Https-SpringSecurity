@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-public class GenericController
+public class ApiController
 {
     private final PersonService personService;
 
@@ -25,7 +25,7 @@ public class GenericController
 
     private final OrderDetailProductRepository orderDetailProductRepository;
 
-    public GenericController(PersonService personService, CategoryRepository categoryRepository, ProductRepository productRepository, OrderDetailRepository orderDetailRepository, OrderDetailProductRepository orderDetailProductRepository)
+    public ApiController(PersonService personService, CategoryRepository categoryRepository, ProductRepository productRepository, OrderDetailRepository orderDetailRepository, OrderDetailProductRepository orderDetailProductRepository)
     {
         this.personService = personService;
         this.categoryRepository = categoryRepository;
