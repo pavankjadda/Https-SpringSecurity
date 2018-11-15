@@ -26,5 +26,6 @@ public class AddressType
 
     public AddressType(String type)
     {
+        this.type=type;
     }
 }

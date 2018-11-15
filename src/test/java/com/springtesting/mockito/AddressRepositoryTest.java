@@ -5,9 +5,11 @@ import com.springtesting.mockito.springbootmysqltests.MysqlJpaConfig;
 import com.springtesting.model.Address;
 import com.springtesting.model.AddressType;
 import com.springtesting.repo.AddressRepository;
+import com.springtesting.repo.AddressTypeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -18,14 +20,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(SpringRunner.class)
-//@DataJpaTest
-@SpringBootTest(classes = {SpringtestingApplication.class,MysqlJpaConfig.class})
+@DataJpaTest
 public class AddressRepositoryTest
 {
     @Autowired
     private AddressRepository addressRepository;
+
+    @Autowired
+    private AddressTypeRepository addressTypeRepository;
+
 
     @Autowired
     private JpaTransactionManager jpaTransactionManager;
@@ -34,45 +40,23 @@ public class AddressRepositoryTest
     public void createPerson()
     {
         Address address=new Address();
-        //AddressType addressType=new AddressType("Home");
         AddressType addressType = findOrCreateAddressType("Home");
-
         address.setStreetName("3130 Fair");
         address.setCity("Fairfax");
         address.setState("VA");
         address.setCountry("USA");
         address.setAddressType(addressType);
-
-        address=addressRepository.save(address);
-        System.out.println("address=> "+address.toString());
-
+        address=addressRepository.saveAndFlush(address);
     }
 
-    public AddressType findOrCreateAddressType(String type)
+    private AddressType findOrCreateAddressType(String type)
     {
-        AddressType addressType=null;
-        EntityManagerFactory entityManagerFactory=jpaTransactionManager.getEntityManagerFactory();
-        EntityManager entityManager= null;
-        if (entityManagerFactory != null)
-        {
-            entityManager = entityManagerFactory.createEntityManager();
-            entityManager.getTransaction().begin();
-            Query query=entityManager.createNativeQuery("SELECT * FROM address_type WHERE type=:1",AddressType.class);
-            query.setParameter(1,type);
-            if(query.getResultList().size() > 0)
-            {
-                System.out.println("query.getResultList() => "+query.getResultList().toString());
-                List<AddressType> addressTypeList= (List<AddressType>) query.getResultList();
-                addressType=addressTypeList.get(0);
-            }
-            else
-            {
-                addressType=new AddressType(type);
-                entityManager.persist(addressType);
-
-            }
-        }
-        return addressType;
+        Optional<AddressType> addressTypeOptional=addressTypeRepository.findAddressTypeByType(type);
+        if(addressTypeOptional.isPresent())
+            return addressTypeOptional.get();
+        else
+            return addressTypeRepository.saveAndFlush(new AddressType(type));
 
     }
+
 }
