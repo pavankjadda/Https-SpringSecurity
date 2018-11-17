@@ -38,10 +38,6 @@ public class Country
     @Length(max = 3,min = 2)
     private String isoCode;
 
-/*    @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<State> states=new ArrayList<>();*/
-
     @ManyToOne
     @JoinColumn(name = "region_id")
     @JsonManagedReference
