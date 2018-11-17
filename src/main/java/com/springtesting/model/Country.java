@@ -1,6 +1,8 @@
 package com.springtesting.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
@@ -36,13 +38,13 @@ public class Country
     @Length(max = 3,min = 2)
     private String isoCode;
 
-    @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
+/*    @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<State> states=new ArrayList<>();
+    private List<State> states=new ArrayList<>();*/
 
     @ManyToOne
     @JoinColumn(name = "region_id")
-    @JsonIgnore
+    @JsonManagedReference
     private Region region;
 
     public Country() {};

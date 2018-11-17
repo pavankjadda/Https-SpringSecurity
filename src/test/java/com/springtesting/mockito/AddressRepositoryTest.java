@@ -40,9 +40,8 @@ public class AddressRepositoryTest
     public void createAddress()
     {
         String type="Home";
-        String city="Dallas";
+        String city="Fairfax";
         String state="Virginia";
-        String stateCode="VA";
         String country="United States";
         String region="NA";
 
@@ -52,7 +51,7 @@ public class AddressRepositoryTest
         address.setStreetName("3130 Fairview park");
         address.setApartment("STE 350");
         address.setAddressType(addressType);
-        address.setCity(findCity(city));
+        address.setCity(findCity(city,state));
         address.setState(findState(state));
         address.setCountry(findCountry(country));
         address.setRegion(findRegion(region));
@@ -98,7 +97,7 @@ public class AddressRepositoryTest
         if(name == null)
             return null;
         Optional<City> cityOptional;
-        State state=findState(name,"","");
+        State state=findState(stateName,"","");
         if(state == null)
             cityOptional=cityRepository.findByName(name);
         else
