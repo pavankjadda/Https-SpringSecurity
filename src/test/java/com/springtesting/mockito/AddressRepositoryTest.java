@@ -40,7 +40,7 @@ public class AddressRepositoryTest
     public void createAddress()
     {
         String type="Home";
-        String city="Fairfax";
+        String city="ALEXANDRIA";
         String state="Virginia";
         String country="United States";
         String region="NA";
@@ -64,7 +64,7 @@ public class AddressRepositoryTest
     @Test
     public void insertData()
     {
-        String city="Fairfax";
+        String city="BAKERSVILLE";
         String state="Virginia";
         String stateCode="VA";
         String country="United States";
