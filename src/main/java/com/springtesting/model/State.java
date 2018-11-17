@@ -30,10 +30,6 @@ public class State
     @Length(max = 200,min = 2)
     private String name;
 
-/*    @OneToMany(mappedBy = "state",cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<City> cities=new ArrayList<>();*/
-
     @ManyToOne
     @JoinColumn(name = "country_id")
     @JsonManagedReference
