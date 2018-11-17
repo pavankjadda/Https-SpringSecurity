@@ -13,11 +13,11 @@ public class City
 {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @Column(name = "name")
-    @Length(max = 100,min = 2)
+    //@Length(max = 100,min = 2)
     private String name;
 
     @ManyToOne
@@ -27,7 +27,7 @@ public class City
 
     public City() { }
 
-    public City(@Length(max = 100, min = 2) String name, State state)
+    public City( String name, State state)
     {
         this.name = name;
         this.state = state;

@@ -37,7 +37,7 @@ public class AddressRepositoryTest
     private RegionRepository regionRepository;
 
     @Test
-    public void createPerson()
+    public void createAddress()
     {
         String type="Home";
         String city="Dallas";
