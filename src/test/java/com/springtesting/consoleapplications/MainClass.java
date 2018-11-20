@@ -1,12 +1,15 @@
 package com.springtesting.consoleapplications;
 
+import com.springtesting.model.Product;
+
 public class MainClass
 {
     public static void main(String[] args)
     {
-        Car carObject=Car.getInstance();
-        System.out.println("Car Make =>"+carObject.make);
-        System.out.println("Car Model =>"+carObject.model);
+        Product product=new Product();
+        product.setName("iPhone");
+
+        System.out.println(product.getName());
 
     }
 }
