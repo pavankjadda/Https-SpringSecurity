@@ -1,4 +1,4 @@
-package com.springtesting.consoleapplications;
+package com.springtesting.mockito;
 
 import com.springtesting.model.Address;
 import com.springtesting.model.Product;
@@ -36,7 +36,7 @@ public class AopTest
 
 
     @Test
-    public void findAddress()
+    public void findAddressById()
     {
         addressRepository.findById(1L);
     }

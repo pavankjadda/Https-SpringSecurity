@@ -1,7 +1,7 @@
 package com.springtesting.mockito;
 
 import com.springtesting.SpringtestingApplication;
-import com.springtesting.mockito.springbootmysqltests.MysqlJpaConfig;
+import com.springtesting.mockito.nonspringboottests.MysqlJpaConfig;
 import com.springtesting.model.Address;
 import com.springtesting.model.AddressType;
 import com.springtesting.repo.AddressRepository;
