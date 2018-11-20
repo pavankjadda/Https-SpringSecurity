@@ -7,12 +7,17 @@ INSERT INTO `springtesting`.`user`(`id`,`address`,`email`,`first_name`,`last_nam
 
 
 /* Insert Data into Category Table */
-INSERT INTO `springtesting`.`category`(`id`,`name`) VALUES('cat1002','Grocessory');
+INSERT INTO `springtesting`.`category`(`id`,`name`) VALUES('cat1002','Grocery');
 INSERT INTO `springtesting`.`category`(`id`,`name`) VALUES('cat1003','Electronics');
 INSERT INTO `springtesting`.`category`(`id`,`name`) VALUES('cat1001','Books');
 
 
 
+/* Insert into Currency table */
+INSERT INTO springtesting.currency VALUES(1,'USD','United States Dollar','$');
+
+/* Insert Data into Price Table*/
+INSERT INTO springtesting.price values(1,349.99,1);
 
 /* Insert Data into Product Table  */
 INSERT INTO `springtesting`.`product`(`id`,`name`,`category_id`) VALUES('p1001','iPhoneX','cat1003');

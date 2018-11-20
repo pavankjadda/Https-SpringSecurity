@@ -11,6 +11,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @ActiveProfiles(value = "integrationtest")
@@ -83,6 +85,22 @@ public class ProductRepositoryTest
             productPriceRepository.saveAndFlush(productPrice);
         }
 
+        System.out.println(product.getName());
+
+    }
+
+
+    @Test
+    public void findProduct()
+    {
+        product=productRepository.findById("p1001").orElse(null);
+        System.out.println(product.getName());
+    }
+
+    @Test
+    public void getAllProducts()
+    {
+        List<Product> productList=productRepository.findAll();
     }
 
     private Product findProduct(String productId)

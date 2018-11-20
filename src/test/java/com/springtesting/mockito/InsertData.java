@@ -134,6 +134,8 @@ public class InsertData
         return citisMap;
     }
 
+
+
     public void readStatesDataFromJsonFile(Map<String, String> statesMap) throws IOException
     {
         File file = new ClassPathResource("data/us-states-data.json").getFile();
