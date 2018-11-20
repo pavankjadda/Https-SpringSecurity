@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
+
 
 @Aspect
 @Configuration
@@ -19,7 +19,8 @@ public class AddressLogging
 {
     private Logger log=LoggerFactory.getLogger(AddressLogging.class);
 
-    @Pointcut("execution(* com.springtesting.repo.AddressRepository.*(..))")
+    //@Pointcut("execution(* com.springtesting.repo.AddressRepository.*(..))")
+    @Pointcut("execution(* com.springtesting.repo.AddressRepository.findAll())")
     public void getAddresses() {}
 
     @After("getAddresses()")
