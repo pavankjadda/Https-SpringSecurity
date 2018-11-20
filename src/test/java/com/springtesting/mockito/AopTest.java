@@ -31,7 +31,8 @@ public class AopTest
     @Test
     public void getAddresses()
     {
-        addressRepository.findAll(PageRequest.of(0,20, Sort.by("id")));
+        //addressRepository.findAll(PageRequest.of(0,20, Sort.by("id")));
+        addressRepository.findAll();
     }
 
 

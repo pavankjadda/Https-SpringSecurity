@@ -19,7 +19,8 @@ public class AddressLogging
 {
     private Logger log=LoggerFactory.getLogger(AddressLogging.class);
 
-    @Pointcut("execution(* com.springtesting.repo.AddressRepository.*(..))")
+    //@Pointcut("execution(* com.springtesting.repo.AddressRepository.*(..))")
+    @Pointcut("execution(* com.springtesting.repo.AddressRepository.findAll())")
     public void getAddresses() {}
 
     @After("getAddresses()")
