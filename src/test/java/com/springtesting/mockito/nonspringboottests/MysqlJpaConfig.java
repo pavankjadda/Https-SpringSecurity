@@ -1,4 +1,4 @@
-package com.springtesting.mockito.springbootmysqltests;
+package com.springtesting.mockito.nonspringboottests;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

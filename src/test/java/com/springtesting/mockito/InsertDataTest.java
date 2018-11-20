@@ -31,7 +31,7 @@ import java.util.*;
 @DataJpaTest
 @ActiveProfiles(value = "integrationtest")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class InsertData
+public class InsertDataTest
 {
     @Autowired
     private CountryRepository countryRepository;
