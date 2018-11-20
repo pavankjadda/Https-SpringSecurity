@@ -7,12 +7,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -39,12 +37,11 @@ public class AddressRepositoryTest
     private RegionRepository regionRepository;
 
     @Test
-    public void createPerson()
+    public void createAddress()
     {
         String type="Home";
-        String city="Dallas";
+        String city="ALEXANDRIA";
         String state="Virginia";
-        String stateCode="VA";
         String country="United States";
         String region="NA";
 
@@ -54,7 +51,7 @@ public class AddressRepositoryTest
         address.setStreetName("3130 Fairview park");
         address.setApartment("STE 350");
         address.setAddressType(addressType);
-        address.setCity(findCity(city));
+        address.setCity(findCity(city,state));
         address.setState(findState(state));
         address.setCountry(findCountry(country));
         address.setRegion(findRegion(region));
@@ -67,7 +64,7 @@ public class AddressRepositoryTest
     @Test
     public void insertData()
     {
-        String city="Fairfax";
+        String city="BAKERSVILLE";
         String state="Virginia";
         String stateCode="VA";
         String country="United States";
@@ -100,7 +97,7 @@ public class AddressRepositoryTest
         if(name == null)
             return null;
         Optional<City> cityOptional;
-        State state=findState(name,"","");
+        State state=findState(stateName,"","");
         if(state == null)
             cityOptional=cityRepository.findByName(name);
         else

@@ -1,11 +1,16 @@
 package com.springtesting.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,7 +20,7 @@ public class State
 {
     @javax.persistence.Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @Column(name = "code")
@@ -25,13 +30,9 @@ public class State
     @Length(max = 200,min = 2)
     private String name;
 
-    @OneToMany(mappedBy = "state",cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<City> cities=new HashSet<>();
-
     @ManyToOne
     @JoinColumn(name = "country_id")
-    @JsonIgnore
+    @JsonManagedReference
     private Country country;
 
 

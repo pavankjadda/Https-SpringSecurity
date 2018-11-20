@@ -1,4 +1,4 @@
-package com.springtesting.web;
+package com.springtesting.web.api;
 
 import com.springtesting.model.Address;
 import com.springtesting.repo.AddressRepository;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/address")
+@RequestMapping(path = "/api/v2/address")
 public class AddressController
 {
 

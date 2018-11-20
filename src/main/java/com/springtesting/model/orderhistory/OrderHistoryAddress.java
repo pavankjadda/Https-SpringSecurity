@@ -1,6 +1,5 @@
 package com.springtesting.model.orderhistory;
 
-import com.springtesting.model.*;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +11,7 @@ import javax.persistence.*;
 public class OrderHistoryAddress
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "address_id")

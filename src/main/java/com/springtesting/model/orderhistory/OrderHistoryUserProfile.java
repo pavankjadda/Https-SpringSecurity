@@ -3,8 +3,6 @@ package com.springtesting.model.orderhistory;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -12,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class OrderHistoryUserProfile
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "user_profile_id")

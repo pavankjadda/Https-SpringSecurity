@@ -5,7 +5,6 @@ import com.springtesting.repo.CategoryRepository;
 import com.springtesting.repo.OrderDetailProductRepository;
 import com.springtesting.repo.OrderDetailRepository;
 import com.springtesting.repo.ProductRepository;
-import com.springtesting.service.PersonService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +14,6 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class ApiController
 {
-    private final PersonService personService;
-
     private final CategoryRepository categoryRepository;
 
     private final ProductRepository productRepository;
@@ -25,9 +22,8 @@ public class ApiController
 
     private final OrderDetailProductRepository orderDetailProductRepository;
 
-    public ApiController(PersonService personService, CategoryRepository categoryRepository, ProductRepository productRepository, OrderDetailRepository orderDetailRepository, OrderDetailProductRepository orderDetailProductRepository)
+    public ApiController(CategoryRepository categoryRepository, ProductRepository productRepository, OrderDetailRepository orderDetailRepository, OrderDetailProductRepository orderDetailProductRepository)
     {
-        this.personService = personService;
         this.categoryRepository = categoryRepository;
         this.productRepository = productRepository;
         this.orderDetailRepository = orderDetailRepository;
@@ -108,25 +104,4 @@ public class ApiController
         return orderDetailProductRepository.findByOrderDetailId(orderId);
     }
 
-
-
-    //Person Controller methods
-
-    @GetMapping(value = "/person/{id}")
-    public Person getPersonById(@PathVariable   String  id)
-    {
-        return personService.getPersonById(id);
-    }
-
-    @GetMapping(value = "/persons")
-    public List<Person> getPersons()
-    {
-        return personService.getPersons();
-    }
-
-    @PostMapping(value = "/person/create")
-    public Person getPersons(@RequestBody   Person  person)
-    {
-        return personService.createPerson(person);
-    }
 }

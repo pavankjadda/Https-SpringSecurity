@@ -11,4 +11,5 @@ public interface CityRepository extends JpaRepository<City,Long>
     Optional<City> findByNameAndState(String name, State state);
 
     Optional<City> findByName(String name);
+
 }
