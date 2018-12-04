@@ -4,7 +4,7 @@
  
  ## Technology Stack
  Backend: Spring Boot, Spring Data JPA, Spring AOP and Spring Security
- Frontend: Angular 7+, Bootstrap etc. Frontend implemented in another project
+ Frontend: Angular 7+, Bootstrap etc. Frontend implemented in [another project](https://github.com/pavankjadda/SpringTestingUI)
  
  ## How to run this?
  Clone the project and run it.

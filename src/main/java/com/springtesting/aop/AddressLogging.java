@@ -26,7 +26,7 @@ public class AddressLogging
     @After("getAddresses()")
     public void afterAdvice()
     {
-        log.error("Log Message: Inside afterAdvice() advice");
+        log.info("Log Message: Inside afterAdvice() advice");
     }
 
     @AfterReturning(pointcut = "execution(* com.springtesting.repo.AddressRepository.*(..))",returning = "addressList")
