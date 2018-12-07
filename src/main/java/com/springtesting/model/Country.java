@@ -1,7 +1,6 @@
 package com.springtesting.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.org.apache.xalan.internal.xsltc.StripFilter;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
