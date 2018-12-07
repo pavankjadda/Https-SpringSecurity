@@ -4,8 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -36,7 +36,7 @@ public class OrderDetail
             name = "order_detail_productlist",
             joinColumns = @JoinColumn(name = "order_detail_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "productlist_id", referencedColumnName = "id"))
-    private Set<Product> productlist = new HashSet<Product>();
+    private List<Product> productList = new ArrayList<>();
 
 
     public OrderDetail() {}
@@ -51,13 +51,13 @@ public class OrderDetail
         this.address = address;
     }
 
-    public OrderDetail(String id, OrderStatus orderStatus, UserProfile purchasedBy, Address address, LocalDateTime localDateTime, Set<Product> productlist)
+    public OrderDetail(String id, OrderStatus orderStatus, UserProfile purchasedBy, Address address, LocalDateTime localDateTime, List<Product> productList)
     {
         this.id = id;
         this.orderStatus = orderStatus;
         this.purchasedBy = purchasedBy;
         this.address = address;
         this.localDateTime = localDateTime;
-        this.productlist = productlist;
+        this.productList = productList;
     }
 }
