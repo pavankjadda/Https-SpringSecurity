@@ -1,9 +1,7 @@
 package com.springtesting.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 
@@ -15,15 +13,14 @@ public class City
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private long Id;
 
     @Column(name = "name")
-    //@Length(max = 100,min = 2)
     private String name;
 
     @ManyToOne
     @JoinColumn(name = "state_id")
-    @JsonManagedReference
+    @JsonIgnore
     private State state;
 
     public City() { }

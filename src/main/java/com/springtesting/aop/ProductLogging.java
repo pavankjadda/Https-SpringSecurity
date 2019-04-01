@@ -15,8 +15,6 @@ public class ProductLogging
 {
     private Logger log= LoggerFactory.getLogger(ProductLogging.class);
 
-
-
     @Pointcut("execution(* com.springtesting.repo.ProductRepository.*(..))")
     //@Pointcut("execution(* com.springtesting.repo.*.*(..))")
     //@Pointcut("within(com.springtesting.repo.ProductRepository)")
