@@ -15,7 +15,7 @@ public class UserProfile
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;

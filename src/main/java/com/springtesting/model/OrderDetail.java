@@ -35,9 +35,9 @@ public class OrderDetail
 
     @ManyToMany
     @JoinTable(
-            name = "order_detail_productlist",
+            name = "order_detail_products_list",
             joinColumns = @JoinColumn(name = "order_detail_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "productlist_id", referencedColumnName = "id"))
+            inverseJoinColumns = @JoinColumn(name = "products_list_id", referencedColumnName = "id"))
     private List<Product> productList = new ArrayList<>();
 
 

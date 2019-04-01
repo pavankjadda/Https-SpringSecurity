@@ -14,7 +14,7 @@ public class Region
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private long Id;
 
     @Column(name = "name")
     @Length(max = 20,min = 2)

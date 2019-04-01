@@ -15,7 +15,9 @@ import java.util.List;
 public class Product implements Serializable
 {
     @Id
-    private String id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -38,9 +40,11 @@ public class Product implements Serializable
     private List<OrderDetail> ordersList =new ArrayList<OrderDetail>();
 
 
-    public Product() {};
+    public Product()
+    {
+    }
 
-    public Product(String id, String name, Category category)
+    public Product(long id, String name, Category category)
     {
         this.id = id;
         this.name = name;

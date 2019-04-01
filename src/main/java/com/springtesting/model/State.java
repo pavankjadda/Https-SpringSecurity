@@ -14,7 +14,7 @@ public class State
     @javax.persistence.Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private long Id;
 
     @Column(name = "code")
     private String code;
