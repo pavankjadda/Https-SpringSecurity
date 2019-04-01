@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -23,10 +21,8 @@ public class User
     private String username;
 
     @Column
-    private Boolean active;
+    private boolean active;
 
-    @NotNull(message = "Address must not be null")
-    @NotEmpty
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -41,7 +37,7 @@ public class User
 
     }
 
-    public User(String username, @NotNull(message = "Address must not be null") @NotEmpty String password, Boolean active, UserProfile userProfile)
+    public User(String username, String password, Boolean active, UserProfile userProfile)
     {
         this.username = username;
         this.password = password;
