@@ -68,7 +68,7 @@ public class ProductRepositoryTest
     @Test
     public void createProduct()
     {
-        String productId="p1005";
+        long productId = 1005;
         String name="Easy Keto Receipes";
         Category category=findCategory("cat1001");
 
@@ -93,7 +93,7 @@ public class ProductRepositoryTest
     @Test
     public void findProduct()
     {
-        product=productRepository.findById("p1001").orElse(null);
+        product = productRepository.findById(1001L).orElse(null);
         System.out.println(product.getName());
     }
 
@@ -103,7 +103,7 @@ public class ProductRepositoryTest
         List<Product> productList=productRepository.findAll();
     }
 
-    private Product findProduct(String productId)
+    private Product findProduct(long productId)
     {
         return productRepository.findById(productId).orElse(null);
     }

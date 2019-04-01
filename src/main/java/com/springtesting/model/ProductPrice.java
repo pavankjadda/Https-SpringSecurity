@@ -15,16 +15,16 @@ public class ProductPrice
     private long id;
 
     @Column(name = "product_id",nullable = false)
-    private String productId;
+    private long productId;
 
     @Column(name = "price_id",nullable = false)
-    private Long priceId;
+    private long priceId;
 
     public ProductPrice()
     {
     }
 
-    public ProductPrice(String productId, Long priceId)
+    public ProductPrice(long productId, Long priceId)
     {
         this.productId = productId;
         this.priceId = priceId;
