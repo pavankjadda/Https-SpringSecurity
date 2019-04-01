@@ -68,9 +68,9 @@ public class ProductRepositoryTest
     @Test
     public void createProduct()
     {
-        long productId = 1005;
+        long productId = 1001;
         String name="Easy Keto Receipes";
-        Category category=findCategory("cat1001");
+        Category category = findCategory(3001);
 
         product=findProduct(productId);
         if(product == null)
@@ -108,7 +108,7 @@ public class ProductRepositoryTest
         return productRepository.findById(productId).orElse(null);
     }
 
-    private Category findCategory(String id)
+    private Category findCategory(long id)
     {
         return categoryRepository.findById(id).orElse(null);
     }

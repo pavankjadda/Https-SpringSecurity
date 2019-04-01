@@ -25,13 +25,13 @@ public class OrderDetailController
     }
 
     @GetMapping(value = "/list")
-    public List<OrderDetail> getOrderDetailes()
+    public List<OrderDetail> getOrderDetails()
     {
         return OrderDetailRepository.findAll();
     }
 
     @GetMapping(value = "/find/{id}")
-    public Optional<OrderDetail> getOrderDetailById(@PathVariable String id)
+    public Optional<OrderDetail> getOrderDetailById(@PathVariable long id)
     {
         return OrderDetailRepository.findById(id);
     }
