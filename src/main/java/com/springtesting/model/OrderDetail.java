@@ -14,7 +14,9 @@ public class OrderDetail
 {
 
     @Id
-    private String id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "order_status")
@@ -41,23 +43,4 @@ public class OrderDetail
 
     public OrderDetail() {}
 
-
-    public OrderDetail(String id, UserProfile purchasedBy, LocalDateTime localDateTime,Address address,OrderStatus orderStatus)
-    {
-        this.id = id;
-        this.orderStatus=orderStatus;
-        this.localDateTime=localDateTime;
-        this.purchasedBy = purchasedBy;
-        this.address = address;
-    }
-
-    public OrderDetail(String id, OrderStatus orderStatus, UserProfile purchasedBy, Address address, LocalDateTime localDateTime, List<Product> productList)
-    {
-        this.id = id;
-        this.orderStatus = orderStatus;
-        this.purchasedBy = purchasedBy;
-        this.address = address;
-        this.localDateTime = localDateTime;
-        this.productList = productList;
-    }
 }

@@ -1,18 +1,10 @@
 package com.springtesting.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -22,7 +14,6 @@ public class Country
 {
     @Id
     @Column(name = "id")
-    //@ColumnDefault(value = "0")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
@@ -40,10 +31,12 @@ public class Country
 
     @ManyToOne
     @JoinColumn(name = "region_id")
-    @JsonManagedReference
+    @JsonIgnore
     private Region region;
 
-    public Country() {};
+    public Country()
+    {
+    }
 
     public Country(String name)
     {
