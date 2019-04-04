@@ -33,9 +33,6 @@ public class AddressLogging
     public void afterReturningAdvice(JoinPoint jp, Object addressList)
     {
         logger.info("Method Signature: {}", jp.getSignature());
-        /*Page<Address> pagedAddressList= (Page<Address>) addressList;
-        for (Address address:pagedAddressList)
-            System.out.println(address.toString());*/
     }
 
 }

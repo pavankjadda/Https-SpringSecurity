@@ -47,10 +47,6 @@ public class AddressController
     public AddressDTO getAddressById(@PathVariable Long id)
     {
         Optional<Address> addressOptional = addressRepository.findById(id);
-        if (addressOptional.isPresent())
-        {
-            return modelMapper.map(addressOptional.get(), AddressDTO.class);
-        }
-        return null;
+        return addressOptional.map(address -> modelMapper.map(address, AddressDTO.class)).orElse(null);
     }
 }
