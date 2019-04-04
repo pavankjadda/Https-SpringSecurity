@@ -13,7 +13,7 @@ public class City
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -23,7 +23,6 @@ public class City
     @JsonIgnore
     private State state;
 
-    public City() { }
 
     public City( String name, State state)
     {
