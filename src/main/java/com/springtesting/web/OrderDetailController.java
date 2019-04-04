@@ -15,12 +15,12 @@ public class OrderDetailController
 {
     private OrderDetailRepository orderDetailRepository;
 
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-    public OrderDetailController(OrderDetailRepository orderDetailRepository)
+    public OrderDetailController(OrderDetailRepository orderDetailRepository, ModelMapper modelMapper)
     {
         this.orderDetailRepository = orderDetailRepository;
-        this.modelMapper = new ModelMapper();
+        this.modelMapper = modelMapper;
     }
 
     @PostMapping(path = "/create")
