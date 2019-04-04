@@ -41,6 +41,4 @@ public class OrderDetail
     private List<Product> productList = new ArrayList<>();
 
 
-    public OrderDetail() {}
-
 }

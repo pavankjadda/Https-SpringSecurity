@@ -1,7 +1,9 @@
 package com.springtesting.web;
 
+import com.springtesting.dto.OrderDetailDTO;
 import com.springtesting.model.OrderDetail;
 import com.springtesting.repo.OrderDetailRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,29 +13,33 @@ import java.util.Optional;
 @RequestMapping("/orders")
 public class OrderDetailController
 {
-    private OrderDetailRepository OrderDetailRepository;
+    private OrderDetailRepository orderDetailRepository;
 
-    public OrderDetailController(OrderDetailRepository OrderDetailRepository)
+    private ModelMapper modelMapper;
+
+    public OrderDetailController(OrderDetailRepository orderDetailRepository)
     {
-        this.OrderDetailRepository=OrderDetailRepository;
+        this.orderDetailRepository = orderDetailRepository;
+        this.modelMapper = new ModelMapper();
     }
 
     @PostMapping(path = "/create")
-    public void createOrderDetail(@RequestBody OrderDetail OrderDetail)
+    public void createOrderDetail(@RequestBody OrderDetailDTO orderDetailDTO)
     {
-        OrderDetailRepository.saveAndFlush(OrderDetail);
+        OrderDetail orderDetail = modelMapper.map(orderDetailDTO, OrderDetail.class);
+        orderDetailRepository.saveAndFlush(orderDetail);
     }
 
     @GetMapping(value = "/list")
     public List<OrderDetail> getOrderDetails()
     {
-        return OrderDetailRepository.findAll();
+        return orderDetailRepository.findAll();
     }
 
     @GetMapping(value = "/find/{id}")
     public Optional<OrderDetail> getOrderDetailById(@PathVariable long id)
     {
-        return OrderDetailRepository.findById(id);
+        return orderDetailRepository.findById(id);
     }
 
 }

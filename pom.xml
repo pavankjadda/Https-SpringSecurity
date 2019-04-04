@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <modelmapper.version>2.3.2</modelmapper.version>
     </properties>
 
     <dependencies>
@@ -55,6 +56,11 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper-examples</artifactId>
+            <version>${modelmapper.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
