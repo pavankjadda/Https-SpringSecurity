@@ -6,13 +6,13 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "address1")
+@Table(name = "address")
 public class Address
 {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "street_name")
     private String streetName;
@@ -40,7 +40,7 @@ public class Address
     private Region region;
 
     @ManyToOne
-    @JoinColumn(name = "address_type_id",referencedColumnName = "id")
+    @JoinColumn(name = "address_type_id")
     private AddressType addressType;
 
     public Address() { }
