@@ -1,8 +1,5 @@
 package com.pj.springsecurity.https.security.handlers;
 
-import com.pj.springsecurity.constants.SecurityConstants;
-import com.pj.springsecurity.model.user.FailedLogin;
-import com.pj.springsecurity.repo.FailedLoginRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.AuthenticationException;
@@ -15,21 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler
 {
-    protected Log logger = LogFactory.getLog(this.getClass());
+    private Log logger = LogFactory.getLog(this.getClass());
 
-    private FailedLoginRepository failedLoginRepository;
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-
-    public CustomAuthenticationFailureHandler(FailedLoginRepository failedLoginRepository)
-    {
-        this.failedLoginRepository=failedLoginRepository;
-    }
-
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException
@@ -39,7 +28,6 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 
         handle(request, response, exception);
         clearAuthenticationAttributes(request);
-        saveRequesterInformation(request);
 
     }
 
@@ -52,7 +40,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
     private String determineTargetUrl(AuthenticationException authenticationException)
     {
         logger.warn("AuthenticationException occurred, message: {}",authenticationException);
-        return SecurityConstants.FORMLOGINFAILUREURL;
+        return "/login";
     }
 
     private void clearAuthenticationAttributes(HttpServletRequest request)
@@ -63,29 +51,6 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
     }
 
-    private void saveRequesterInformation(HttpServletRequest request)
-    {
-        FailedLogin failedLogin=new FailedLogin();
-        failedLogin.setRequesterIpAddress(request.getRemoteAddr());
-        failedLogin.setRequesterPort(request.getRemotePort());
-        failedLogin.setRequestedMethod(request.getMethod());
-        failedLogin.setLocalIpAddress(request.getLocalAddr());
-        failedLogin.setLocalPort(request.getLocalPort());
-        failedLogin.setServerName(request.getServerName());
-        failedLogin.setServerPort(request.getServerPort());
-        failedLogin.setBrowserInformation(request.getAuthType());
-        failedLogin.setAuthType(request.getAuthType());
-        failedLogin.setLoggedDataTime(LocalDateTime.now());
-
-        try
-        {
-            failedLoginRepository.saveAndFlush(failedLogin);
-        }
-        catch (Exception e)
-        {
-            logger.warn("Failed to save requester information. Exception message: {}",e);
-        }
-    }
 
 
 }

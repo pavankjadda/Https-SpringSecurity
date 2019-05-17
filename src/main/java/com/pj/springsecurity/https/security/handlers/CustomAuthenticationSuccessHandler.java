@@ -1,7 +1,5 @@
 package com.pj.springsecurity.https.security.handlers;
 
-import com.pj.springsecurity.model.security.SessionHistory;
-import com.pj.springsecurity.repo.SessionHistoryRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.Authentication;
@@ -27,50 +25,14 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-    private SessionHistoryRepository sessionHistoryRepository;
-
-
-    public CustomAuthenticationSuccessHandler(SessionHistoryRepository sessionHistoryRepository)
-    {
-        this.sessionHistoryRepository=sessionHistoryRepository;
-    }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException
     {
         handle(request, response, authentication);
         clearAuthenticationAttributes(request);
-        saveRequesterInformation(request,authentication);
     }
 
-    private void saveRequesterInformation(HttpServletRequest request, Authentication authentication)
-    {
-        SessionHistory sessionHistory=new SessionHistory();
-        sessionHistory.setSessionId(request.getSession(false).getId());
-        sessionHistory.setCreationTime(convertLongTime(request.getSession(false).getCreationTime()));
-        sessionHistory.setLastAccessTime(convertLongTime(request.getSession(false).getLastAccessedTime()));
-        sessionHistory.setMaxInactiveInterval(request.getSession(false).getMaxInactiveInterval());
-        sessionHistory.setLoggedDataTime(LocalDateTime.now());
-        sessionHistory.setUsername(authentication.getName());
-        sessionHistory.setRequesterIpAddress(request.getRemoteAddr());
-        sessionHistory.setRequesterPort(request.getRemotePort());
-        sessionHistory.setRequestedMethod(request.getMethod());
-        sessionHistory.setLocalIpAddress(request.getLocalAddr());
-        sessionHistory.setLocalPort(request.getLocalPort());
-        sessionHistory.setServerName(request.getServerName());
-        sessionHistory.setServerPort(request.getServerPort());
-        sessionHistory.setBrowserInformation(request.getAuthType());
-        sessionHistory.setAuthType(request.getAuthType());
-
-        try
-        {
-            sessionHistoryRepository.saveAndFlush(sessionHistory);
-        }
-        catch (Exception e)
-        {
-            logger.info("Failed to save requester information. Exception message " ,e);
-        }
-    }
 
     private void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException
     {

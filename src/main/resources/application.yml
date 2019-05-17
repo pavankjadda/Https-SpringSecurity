@@ -11,9 +11,13 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+  session:
+    jdbc:
+      table-name: SPRING_SESSION
+      initialize-schema: always
 
   datasource:
-    url: jdbc:mysql://localhost:3306/httpsspringtesting?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/httpsspringsecurity?serverTimezone=UTC
     username: root
     password: bcmc1234
     driver-class-name: com.mysql.cj.jdbc.Driver
