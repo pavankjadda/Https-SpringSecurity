@@ -5,28 +5,31 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
 @Table(name = "country")
 @Data
-public class Country
+public class Country implements Serializable
 {
+    private static final long serialVersionUID = 6396100319470393108L;
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private Long id;
 
     @Column(name = "name")
-    @Length(max = 200,min = 2)
+    @Length(max = 200, min = 2)
     private String name;
 
     @Column(name = "code")
-    @Length(max = 3,min = 2)
+    @Length(max = 3, min = 2)
     private String code;
 
     @Column(name = "iso_code")
-    @Length(max = 3,min = 2)
+    @Length(max = 3, min = 2)
     private String isoCode;
 
     @ManyToOne
@@ -40,7 +43,7 @@ public class Country
 
     public Country(String name)
     {
-        this.name=name;
+        this.name = name;
     }
 
     public Country(@Length(max = 100, min = 2) String name, Region region)

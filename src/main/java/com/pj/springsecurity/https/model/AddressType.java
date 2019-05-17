@@ -9,12 +9,14 @@ import javax.persistence.*;
 @Table(name = "address_type")
 public class AddressType
 {
+    private static final long serialVersionUID = 4381043207138882281L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private Long id;
 
-    @Column(name = "type",nullable = false)
+    @Column(name = "type", nullable = false)
     private String type;
 
     public AddressType()
@@ -24,6 +26,6 @@ public class AddressType
 
     public AddressType(String type)
     {
-        this.type=type;
+        this.type = type;
     }
 }

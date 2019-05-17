@@ -1,5 +1,6 @@
 package com.pj.springsecurity.https.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,9 +10,10 @@ import javax.persistence.*;
 @Table(name = "address")
 public class Address
 {
+    private static final long serialVersionUID = -1540126888782313444L;
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "street_name")
@@ -19,9 +21,6 @@ public class Address
 
     @Column(name = "apartment")
     private String apartment;
-
-    @Column(name = "zip_code")
-    private String zipCode;
 
     @ManyToOne
     @JoinColumn(name = "city_id")
@@ -39,20 +38,16 @@ public class Address
     @JoinColumn(name = "region_id")
     private Region region;
 
+    @Column(name = "zip_code")
+    private String zipCode;
+
     @ManyToOne
-    @JoinColumn(name = "address_type_id")
+    @JoinColumn(name = "address_type_id", referencedColumnName = "id")
     private AddressType addressType;
 
-    public Address() { }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_profile_id")
+    @JsonIgnore
+    private UserProfile userProfile;
 
-    public Address(String streetName, String apartment, City city, State state, Country country, String zipCode, AddressType addressType)
-    {
-        this.streetName = streetName;
-        this.apartment = apartment;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-        this.zipCode = zipCode;
-        this.addressType = addressType;
-    }
 }

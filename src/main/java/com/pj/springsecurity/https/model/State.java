@@ -1,40 +1,45 @@
 package com.pj.springsecurity.https.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "state")
 @Data
-public class State
+public class State implements Serializable
 {
-    @javax.persistence.Id
+    private static final long serialVersionUID = 5553856435782266275L;
+
+    @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private Long id;
 
     @Column(name = "code")
     private String code;
 
     @Column(name = "name")
-    @Length(max = 200,min = 2)
+    @Length(max = 200, min = 2)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
-    @JsonIgnore
+    @JsonIgnoreProperties(value = {"region"})
     private Country country;
 
 
-    public State() {}
+    public State()
+    {
+    }
 
     public State(@Length(max = 100, min = 2) String name, String code, Country country)
     {
         this.name = name;
-        this.code=code;
+        this.code = code;
         this.country = country;
     }
 }
