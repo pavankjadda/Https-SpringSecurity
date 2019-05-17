@@ -117,8 +117,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .antMatchers("/").permitAll()
             .and()
                 .authorizeRequests().antMatchers("/console/**","/h2-console/**").permitAll();
-   /*     http.headers()
-             .frameOptions().disable();*/
+        http.headers()
+             .frameOptions().disable();
 
     }
 
