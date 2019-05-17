@@ -11,8 +11,9 @@ import javax.persistence.*;
 public class Currency
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(name = "name",nullable = false)
     private String name;
@@ -24,7 +25,9 @@ public class Currency
     private String isoCode;
 
 
-    public Currency() {};
+    public Currency()
+    {
+    }
 
     public Currency(String name, String symbol, String isoCode)
     {

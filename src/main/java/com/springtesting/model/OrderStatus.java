@@ -11,12 +11,14 @@ public class OrderStatus
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "status")
     private String status;
 
-    public OrderStatus() {};
+    public OrderStatus()
+    {
+    }
 
     public OrderStatus(String status)
     {

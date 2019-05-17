@@ -14,7 +14,9 @@ public class OrderDetail
 {
 
     @Id
-    private String id;
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "order_status")
@@ -33,31 +35,10 @@ public class OrderDetail
 
     @ManyToMany
     @JoinTable(
-            name = "order_detail_productlist",
+            name = "order_detail_products_list",
             joinColumns = @JoinColumn(name = "order_detail_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "productlist_id", referencedColumnName = "id"))
+            inverseJoinColumns = @JoinColumn(name = "products_list_id", referencedColumnName = "id"))
     private List<Product> productList = new ArrayList<>();
 
 
-    public OrderDetail() {}
-
-
-    public OrderDetail(String id, UserProfile purchasedBy, LocalDateTime localDateTime,Address address,OrderStatus orderStatus)
-    {
-        this.id = id;
-        this.orderStatus=orderStatus;
-        this.localDateTime=localDateTime;
-        this.purchasedBy = purchasedBy;
-        this.address = address;
-    }
-
-    public OrderDetail(String id, OrderStatus orderStatus, UserProfile purchasedBy, Address address, LocalDateTime localDateTime, List<Product> productList)
-    {
-        this.id = id;
-        this.orderStatus = orderStatus;
-        this.purchasedBy = purchasedBy;
-        this.address = address;
-        this.localDateTime = localDateTime;
-        this.productList = productList;
-    }
 }
