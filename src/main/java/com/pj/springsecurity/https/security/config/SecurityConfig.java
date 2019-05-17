@@ -74,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .antMatchers("/users/**").hasAuthority(AuthorityConstants.ADMIN)
                     .antMatchers("/admin**").hasAuthority(AuthorityConstants.ADMIN)
                     .antMatchers("/profile/**").hasAuthority(AuthorityConstants.USER)
-                    .antMatchers("/api/**").hasAnyAuthority(AuthorityConstants.API_USER,AuthorityConstants.ADMIN)
+                    .antMatchers("/api/**").hasAuthority(AuthorityConstants.ADMIN)//.hasAnyAuthority(AuthorityConstants.API_USER,AuthorityConstants.ADMIN)
                     .antMatchers("/dba/**").hasAuthority(AuthorityConstants.DBA)
                     .anyRequest().authenticated()
             .and()
