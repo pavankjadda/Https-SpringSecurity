@@ -68,7 +68,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     {
             http.authorizeRequests()
                     .antMatchers("/anonymous*").anonymous()
-                    .antMatchers("/register").permitAll()
                     .antMatchers("/users/**").hasAuthority(AuthorityConstants.ADMIN)
                     .antMatchers("/admin**").hasAuthority(AuthorityConstants.ADMIN)
                     .antMatchers("/profile/**").hasAuthority(AuthorityConstants.USER)
@@ -97,6 +96,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .and()
                     .rememberMe().rememberMeServices(springSessionRememberMeServices());
 
+        http.csrf()
+                .disable();
+
         // Uses CorsConfigurationSource bean defined below
         http.cors();
 
@@ -108,12 +110,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                         .maxSessionsPreventsLogin(false)
                         .sessionRegistry(sessionRegistry());
 
-        http.csrf()
-            .disable();
+
         http.authorizeRequests()
-            .antMatchers("/").permitAll()
-                .and()
-            .authorizeRequests().antMatchers("/console/**","/h2-console/**").permitAll();
+                .antMatchers("/").permitAll()
+            .and()
+                .authorizeRequests().antMatchers("/console/**","/h2-console/**").permitAll();
         http.headers()
              .frameOptions().disable();
 
