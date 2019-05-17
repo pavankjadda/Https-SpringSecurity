@@ -8,6 +8,7 @@ import com.pj.springsecurity.https.security.providers.CustomDaoAuthenticationPro
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -74,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .antMatchers("/users/**").hasAuthority(AuthorityConstants.ADMIN)
                     .antMatchers("/admin**").hasAuthority(AuthorityConstants.ADMIN)
                     .antMatchers("/profile/**").hasAuthority(AuthorityConstants.USER)
-                    .antMatchers("/api/**").hasAuthority(AuthorityConstants.ADMIN)//.hasAnyAuthority(AuthorityConstants.API_USER,AuthorityConstants.ADMIN)
+                    .antMatchers("/api/**").hasAnyAuthority(AuthorityConstants.API_USER,AuthorityConstants.ADMIN)
                     .antMatchers("/dba/**").hasAuthority(AuthorityConstants.DBA)
                     .anyRequest().authenticated()
             .and()
@@ -116,8 +117,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .antMatchers("/").permitAll()
             .and()
                 .authorizeRequests().antMatchers("/console/**","/h2-console/**").permitAll();
-        http.headers()
-             .frameOptions().disable();
+   /*     http.headers()
+             .frameOptions().disable();*/
 
     }
 
@@ -145,11 +146,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
 
     @Override
-    public void configure(WebSecurity web) throws Exception
+    public void configure(WebSecurity web)
     {
         web
             .ignoring()
-            .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/h2-console/**","/console/**");
+            .antMatchers(HttpMethod.OPTIONS,"**","/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/h2-console/**","/console/**");
     }
 
 
