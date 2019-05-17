@@ -67,11 +67,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
-        http.csrf()
-                .disable();
 
-            http.authorizeRequests()
-                    .antMatchers("/anonymous*").anonymous()
+        http.authorizeRequests()
+                    .antMatchers("/anonymous").anonymous()
                     .antMatchers("/users/**").hasAuthority(AuthorityConstants.ADMIN)
                     .antMatchers("/admin**").hasAuthority(AuthorityConstants.ADMIN)
                     .antMatchers("/profile/**").hasAuthority(AuthorityConstants.USER)
@@ -109,6 +107,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(false)
                         .sessionRegistry(sessionRegistry());
+
+        http.csrf()
+                .disable();
 
         // Uses CorsConfigurationSource bean defined below
         http.cors();
