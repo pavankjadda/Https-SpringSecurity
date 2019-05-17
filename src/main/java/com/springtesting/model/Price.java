@@ -14,7 +14,7 @@ public class Price
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @OneToOne
     @JoinColumn(name = "currency_id")

@@ -1,6 +1,5 @@
 package com.springtesting.mockito;
 
-import com.springtesting.model.Address;
 import com.springtesting.model.Product;
 import com.springtesting.repo.AddressRepository;
 import com.springtesting.repo.ProductRepository;
@@ -8,10 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -45,7 +40,7 @@ public class AopTest
     @Test
     public void testAop()
     {
-        Product product=productRepository.findById("p1001").orElse(null);
+        Product product = productRepository.findById(1001L).orElse(null);
     }
 
     @Test

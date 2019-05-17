@@ -1,6 +1,6 @@
 package com.springtesting.mockito;
 
-import com.springtesting.SpringtestingApplication;
+import com.springtesting.SpringTestingApplication;
 import com.springtesting.mockito.nonspringboottests.MysqlJpaConfig;
 import com.springtesting.model.Address;
 import com.springtesting.model.AddressType;
@@ -19,7 +19,7 @@ import java.util.List;
 
 // This class focuses on updating database using Entity Manager rather than Spring Data
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {SpringtestingApplication.class,MysqlJpaConfig.class})
+@SpringBootTest(classes = {SpringTestingApplication.class,MysqlJpaConfig.class})
 public class EntityManagerAddressRepositoryTest
 {
     @Autowired

@@ -2,7 +2,6 @@ package com.springtesting.model;
 
 
 import lombok.Data;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -14,9 +13,8 @@ public class Region
 {
     @Id
     @Column(name = "id")
-    //@ColumnDefault(value = "0")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private long Id;
 
     @Column(name = "name")
     @Length(max = 20,min = 2)

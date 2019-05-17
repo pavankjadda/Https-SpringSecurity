@@ -10,8 +10,8 @@ import javax.persistence.*;
 public class Address
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "street_name")
@@ -19,6 +19,9 @@ public class Address
 
     @Column(name = "apartment")
     private String apartment;
+
+    @Column(name = "zip_code")
+    private String zipCode;
 
     @ManyToOne
     @JoinColumn(name = "city_id")
@@ -36,11 +39,8 @@ public class Address
     @JoinColumn(name = "region_id")
     private Region region;
 
-    @Column(name = "zip_code")
-    private String zipCode;
-
     @ManyToOne
-    @JoinColumn(name = "address_type_id",referencedColumnName = "id")
+    @JoinColumn(name = "address_type_id")
     private AddressType addressType;
 
     public Address() { }

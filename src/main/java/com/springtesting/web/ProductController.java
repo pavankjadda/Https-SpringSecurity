@@ -31,7 +31,7 @@ public class ProductController
     }
 
     @GetMapping(value = "/find/{id}")
-    public Optional<Product> getProductById(@PathVariable String id)
+    public Optional<Product> getProductById(@PathVariable long id)
     {
         return productRepository.findById(id);
     }
