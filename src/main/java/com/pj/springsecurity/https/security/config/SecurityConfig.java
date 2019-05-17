@@ -66,6 +66,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
+        http.csrf()
+                .disable();
+
             http.authorizeRequests()
                     .antMatchers("/anonymous*").anonymous()
                     .antMatchers("/users/**").hasAuthority(AuthorityConstants.ADMIN)
@@ -96,11 +99,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .and()
                     .rememberMe().rememberMeServices(springSessionRememberMeServices());
 
-        http.csrf()
-                .disable();
 
-        // Uses CorsConfigurationSource bean defined below
-        http.cors();
 
         http.sessionManagement()
                         //.invalidSessionUrl("/login.html")
@@ -110,6 +109,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                         .maxSessionsPreventsLogin(false)
                         .sessionRegistry(sessionRegistry());
 
+        // Uses CorsConfigurationSource bean defined below
+        http.cors();
 
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
