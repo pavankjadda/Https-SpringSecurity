@@ -70,6 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
         http.authorizeRequests()
                     .antMatchers("/anonymous").anonymous()
+                    .antMatchers("/welcome").permitAll()
                     .antMatchers("/users/**").hasAuthority(AuthorityConstants.ADMIN)
                     .antMatchers("/admin**").hasAuthority(AuthorityConstants.ADMIN)
                     .antMatchers("/profile/**").hasAuthority(AuthorityConstants.USER)
@@ -97,7 +98,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .exceptionHandling()
             .and()
                     .rememberMe().rememberMeServices(springSessionRememberMeServices());
-
 
 
         http.sessionManagement()

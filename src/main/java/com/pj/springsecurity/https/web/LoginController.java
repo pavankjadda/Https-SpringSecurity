@@ -37,6 +37,12 @@ public class LoginController
         return copyUser(authentication,request);
     }
 
+    @GetMapping(value = {"/welcome"})
+    public String getWelcome(HttpServletRequest request)
+    {
+        return "Welcome Home";
+    }
+
     @PostMapping(value = {"/login"})
     public UserDto loginUserPost(HttpServletRequest request)
     {
