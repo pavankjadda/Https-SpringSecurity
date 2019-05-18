@@ -3,11 +3,12 @@ package com.pj.springsecurity.https.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
 @Table(name = "address_type")
-public class AddressType
+public class AddressType implements Serializable
 {
     private static final long serialVersionUID = 4381043207138882281L;
 

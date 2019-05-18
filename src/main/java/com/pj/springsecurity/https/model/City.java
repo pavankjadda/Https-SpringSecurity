@@ -6,12 +6,13 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "city")
 @Cache(region = "cityCache",usage = CacheConcurrencyStrategy.READ_WRITE)
 @Data
-public class City
+public class City implements Serializable
 {
     private static final long serialVersionUID = -8825045541258851493L;
 
