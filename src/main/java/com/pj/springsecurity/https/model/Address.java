@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
 @Table(name = "address")
-public class Address
+public class Address implements Serializable
 {
-    private static final long serialVersionUID = -1540126888782313444L;
+    private static final long serialVersionUID = -2057016816174809870L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
