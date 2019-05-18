@@ -13,8 +13,8 @@ import java.util.Collection;
 @Table(name = "role")
 public class Role implements Serializable
 {
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = -3120907494152446309L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

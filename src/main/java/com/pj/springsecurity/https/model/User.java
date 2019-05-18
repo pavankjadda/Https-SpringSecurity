@@ -13,6 +13,8 @@ import java.util.Collection;
 public class User implements Serializable
 {
 
+    private static final long serialVersionUID = -6953452565398553524L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
