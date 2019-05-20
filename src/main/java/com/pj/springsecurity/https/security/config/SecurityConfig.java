@@ -3,7 +3,6 @@ package com.pj.springsecurity.https.security.config;
 
 import com.pj.springsecurity.https.security.MyUserDetailsService;
 import com.pj.springsecurity.https.security.handlers.CustomBasicAuthenticationEntryPoint;
-import com.pj.springsecurity.https.security.handlers.CustomLogoutSuccessHandler;
 import com.pj.springsecurity.https.security.providers.CustomDaoAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -83,28 +82,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                     .exceptionHandling()
                     .authenticationEntryPoint(customBasicAuthenticationEntryPoint)
             .and()
-                    .formLogin()
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        .permitAll()
-                    .and()
-                    .logout()
-                        .deleteCookies("X-Auth-Token")
-                        .clearAuthentication(true)
-                        .invalidateHttpSession(true)
-                        .logoutSuccessHandler(new CustomLogoutSuccessHandler())
-                        .permitAll()
-             .and()
-                    .exceptionHandling()
-            .and()
                     .rememberMe().rememberMeServices(springSessionRememberMeServices());
 
 
         http.sessionManagement()
-                        //.invalidSessionUrl("/login.html")
-                        //.invalidSessionStrategy((request, response) -> request.logout())
                         .sessionFixation().migrateSession()
-                        .maximumSessions(1)
+                        .maximumSessions(2)
                         .maxSessionsPreventsLogin(false)
                         .sessionRegistry(sessionRegistry());
 

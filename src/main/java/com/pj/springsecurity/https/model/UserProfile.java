@@ -7,8 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Data
@@ -46,10 +44,6 @@ public class UserProfile implements Serializable
     private String phone;
 
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "userProfile")
-    private List<Address> addresses = new ArrayList<>();
-
-    /*  @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler","userProfile","roles"}) can be replaced with FetchType.EAGER  */
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler","userProfile","roles","password"})

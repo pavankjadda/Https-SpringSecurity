@@ -4,7 +4,6 @@ import com.pj.springsecurity.https.model.Role;
 import com.pj.springsecurity.https.model.UserProfile;
 import lombok.Data;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 @Data

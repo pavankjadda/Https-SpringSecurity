@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {RouteConfigLoadEnd, RouteConfigLoadStart, Router} from '@angular/router';
-import {NgxSpinnerService} from 'ngx-spinner';
+import {Component, OnInit} from "@angular/core";
+import {RouteConfigLoadEnd, RouteConfigLoadStart, Router} from "@angular/router";
+import {NgxSpinnerService} from "ngx-spinner";
 import {environment} from "./environments/environment.prod";
 
 @Component({
