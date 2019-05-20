@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -41,13 +42,13 @@ public class User implements Serializable
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "user",optional = false)
     private UserProfile userProfile;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    private Collection<Role> roles;
+    private Collection<Role> roles=new ArrayList<>();
 
     public User()
     {

@@ -1,11 +1,12 @@
 package com.pj.springsecurity.https.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -25,8 +26,8 @@ public class Role implements Serializable
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    @JsonIgnore
-    private Collection<User> users;
+    @JsonIgnoreProperties(value = {"roles"})
+    private Collection<User> users=new ArrayList<>();
 
     @ManyToMany
     @JoinTable(

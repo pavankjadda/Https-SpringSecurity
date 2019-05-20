@@ -7,6 +7,9 @@ INSERT INTO `httpsspringsecurity`.`user`(`id`,`account_non_expired`,`account_non
 VALUES (1002, true, true, true, true, '$2a$12$tBTv6hgDYME.QePjkXEdxOnYhi95zPtamm6NskNuSA5XeTtJKGhzS' , 'user');
 
 
+INSERT INTO `httpsspringsecurity`.`user_profile`(`id`,`email`,`first_name`,`last_name`,`phone`,`user_id`) VALUES(1, 'admin@ad.com','Admin','Admin','9898434893',1001);
+
+
 insert into httpsspringsecurity.role values(1,'ROLE_USER');
 insert into httpsspringsecurity.role values(2,'ROLE_ADMIN');
 insert into httpsspringsecurity.role values(3,'ROLE_APIUSER');
