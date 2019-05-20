@@ -9,7 +9,6 @@ import java.util.Collection;
 @Data
 public class UserDto
 {
-
     private Long id;
 
     private String username;
@@ -23,6 +22,5 @@ public class UserDto
     private Collection<Role> roles;
 
     private UserProfile userProfile;
-
 
 }
