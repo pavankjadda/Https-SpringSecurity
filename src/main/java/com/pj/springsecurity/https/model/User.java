@@ -4,8 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 
 @Entity
@@ -13,8 +12,6 @@ import java.util.List;
 @Table(name = "`user`")
 public class User implements Serializable
 {
-
-    private static final long serialVersionUID = -6953452565398553524L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,19 +36,21 @@ public class User implements Serializable
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "user",optional = false)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "user")
+    @JoinColumn(name = "user_profile_id")
     private UserProfile userProfile;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    private List<Role> roles=new ArrayList<>();
+    private Collection<Role> roles;
 
     public User()
     {
+
     }
 
     public User(String username, String password, Boolean active, UserProfile userProfile)

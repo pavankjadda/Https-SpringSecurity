@@ -6,16 +6,14 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Data
 @Table(name = "role")
 public class Role implements Serializable
 {
-    private static final long serialVersionUID = -3120907494152446309L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +26,7 @@ public class Role implements Serializable
 
     @ManyToMany(mappedBy = "roles")
     @JsonIgnore
-    private List<User> users=new ArrayList<>();
+    private Collection<User> users;
 
     @ManyToMany
     @JoinTable(
@@ -38,6 +36,22 @@ public class Role implements Serializable
     )
     private Collection<Privilege> privileges;
 
+
+    public Role()
+    {
+    }
+
+    public Role(String name)
+    {
+        this.name = name;
+    }
+
+    public Role(String name, Collection<User> users, Collection<Privilege> privileges)
+    {
+        this.name = name;
+        this.users = users;
+        this.privileges = privileges;
+    }
 
     @Override
     public String toString()

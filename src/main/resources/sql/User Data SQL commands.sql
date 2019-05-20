@@ -23,10 +23,10 @@ insert into httpsspringsecurity.privilege values(2,'WRITE_PRIVILEGE');
 insert into httpsspringsecurity.privilege values(3,'DELETE_PRIVILEGE');
 
 /* Insert Data into UserRole Table  */
-INSERT INTO `httpsspringsecurity`.`user_role`(`id`,`user_id`,`role_id`) VALUES (1,2,1);
-INSERT INTO `httpsspringsecurity`.`user_role`(`id`,`user_id`,`role_id`) VALUES (2,1,2);
-INSERT INTO `httpsspringsecurity`.`user_role`(`id`,`user_id`,`role_id`) VALUES (3,1,1);
-INSERT INTO `httpsspringsecurity`.`user_role`(`id`,`user_id`,`role_id`) VALUES (4,1,3);
+INSERT INTO `httpsspringsecurity`.`user_role`(`id`,`user_id`,`role_id`) VALUES (1,1002,1);
+INSERT INTO `httpsspringsecurity`.`user_role`(`id`,`user_id`,`role_id`) VALUES (2,1001,2);
+INSERT INTO `httpsspringsecurity`.`user_role`(`id`,`user_id`,`role_id`) VALUES (3,1001,1);
+INSERT INTO `httpsspringsecurity`.`user_role`(`id`,`user_id`,`role_id`) VALUES (4,1001,3);
 
 /* Insert Data into RolePrivilege Table  */
 insert into httpsspringsecurity.role_privilege values(2,1);

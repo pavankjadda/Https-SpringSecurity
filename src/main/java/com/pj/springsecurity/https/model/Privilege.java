@@ -12,7 +12,8 @@ import java.util.Collection;
 @Table(name = "privilege")
 public class Privilege implements Serializable
 {
-    private static final long serialVersionUID = 9045371015918530740L;
+    private static final long serialVersionUID = 3L;
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
