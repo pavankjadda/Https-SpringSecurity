@@ -38,22 +38,6 @@ public class Role implements Serializable
     private Collection<Privilege> privileges;
 
 
-    public Role()
-    {
-    }
-
-    public Role(String name)
-    {
-        this.name = name;
-    }
-
-    public Role(String name, Collection<User> users, Collection<Privilege> privileges)
-    {
-        this.name = name;
-        this.users = users;
-        this.privileges = privileges;
-    }
-
     @Override
     public String toString()
     {
