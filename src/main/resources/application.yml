@@ -1,25 +1,41 @@
 # Server Properties
 server:
-  port: 8080
+  port: 8443
+  servlet:
+    session:
+      cookie:
+        secure: true
+        http-only: false
 
-# Spring Properties
+  ssl:
+    # The format used for the keystore. It could be set to JKS in case it is a JKS file
+    key-store-type: PKCS12
+    # The path to the keystore containing the certificate
+    key-store: classpath:keystore/pavanjadda.p12
+    # The password used to generate the certificate
+    key-store-password: Jadda@2017
+    # The alias mapped to the certificate
+    key-alias: pavanjadda
+
+
+
 spring:
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+  session:
+    jdbc:
+      table-name: SPRING_SESSION
+      initialize-schema: always
 
   datasource:
-    url: jdbc:mysql://localhost:3306/springtesting?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/httpsspringsecurity?serverTimezone=UTC
     username: root
     password: bcmc1234
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-  profiles:
-    active: dev
   devtools:
     livereload:
       enabled: true
+

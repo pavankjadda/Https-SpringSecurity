@@ -16,6 +16,10 @@
 *.iml
 *.ipr
 
+
+### Angular Node Modules ###
+/node_modules
+
 ### NetBeans ###
 /nbproject/private/
 /build/
