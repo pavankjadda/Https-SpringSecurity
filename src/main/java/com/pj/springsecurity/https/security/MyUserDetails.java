@@ -8,6 +8,8 @@ import java.util.Collection;
 
 public class MyUserDetails implements UserDetails
 {
+    private static final long serialVersionUID = 344691270273191043L;
+
     private User user;
 
     private Collection<? extends GrantedAuthority> roles;
