@@ -42,7 +42,7 @@ public class User implements Serializable
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY, mappedBy = "user",optional = false)
     private UserProfile userProfile;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -52,7 +52,6 @@ public class User implements Serializable
 
     public User()
     {
-
     }
 
     public User(String username, String password, Boolean active, UserProfile userProfile)
