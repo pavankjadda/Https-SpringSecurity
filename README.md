@@ -13,3 +13,5 @@ $ keytool -genkeypair -alias pavanjadda -keyalg RSA -keysize 2048 -storetype PKC
 4. Go to `src/main/java/resources/sql` and copy commands from the file **User Data SQL commands.sql** and run it on Mysql database
 5. Now go to the following url : https://localhost:8443/api/v2/category/list and enter credentials **admin** and **admin**
 
+---
+Refer [this article](https://www.baeldung.com/spring-boot-https-self-signed-certificate)  for more information
