@@ -30,125 +30,125 @@ import java.util.Collections;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
-    private final MyUserDetailsService userDetailsService;
+	private final MyUserDetailsService userDetailsService;
 
-    private final CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint;
+	private final CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint;
 
-    @Autowired
-    public SecurityConfig(MyUserDetailsService userDetailsService, CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint)
-    {
-        this.userDetailsService = userDetailsService;
-        this.customBasicAuthenticationEntryPoint = customBasicAuthenticationEntryPoint;
-    }
+	@Autowired
+	public SecurityConfig(MyUserDetailsService userDetailsService, CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint)
+	{
+		this.userDetailsService = userDetailsService;
+		this.customBasicAuthenticationEntryPoint = customBasicAuthenticationEntryPoint;
+	}
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth)
-    {
-        auth.authenticationProvider(getDaoAuthenticationProvider());
-    }
+	@Override
+	public void configure(AuthenticationManagerBuilder auth)
+	{
+		auth.authenticationProvider(getDaoAuthenticationProvider());
+	}
 
-    @Bean
-    public CustomDaoAuthenticationProvider getDaoAuthenticationProvider()
-    {
-        CustomDaoAuthenticationProvider daoAuthenticationProvider=new CustomDaoAuthenticationProvider();
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-        daoAuthenticationProvider.setPasswordEncoder(getBCryptPasswordEncoder());
-        return daoAuthenticationProvider;
-    }
+	@Bean
+	public CustomDaoAuthenticationProvider getDaoAuthenticationProvider()
+	{
+		CustomDaoAuthenticationProvider daoAuthenticationProvider = new CustomDaoAuthenticationProvider();
+		daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+		daoAuthenticationProvider.setPasswordEncoder(getBCryptPasswordEncoder());
+		return daoAuthenticationProvider;
+	}
 
-    /* BCrypt strength should 12 or more*/
-    @Bean
-    public PasswordEncoder getBCryptPasswordEncoder()
-    {
-        return new BCryptPasswordEncoder(12);
-    }
+	/* BCrypt strength should 12 or more*/
+	@Bean
+	public PasswordEncoder getBCryptPasswordEncoder()
+	{
+		return new BCryptPasswordEncoder(12);
+	}
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception
-    {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception
+	{
 
-        http.authorizeRequests()
-                    .antMatchers("/anonymous").anonymous()
-                    .antMatchers("/welcome").permitAll()
-                    .antMatchers("/users/**").hasAuthority(AuthorityConstants.ADMIN)
-                    .antMatchers("/admin**").hasAuthority(AuthorityConstants.ADMIN)
-                    .antMatchers("/profile/**").hasAuthority(AuthorityConstants.USER)
-                    .antMatchers("/api/**").hasAnyAuthority(AuthorityConstants.API_USER,AuthorityConstants.ADMIN)
-                    .antMatchers("/dba/**").hasAuthority(AuthorityConstants.DBA)
-                    .anyRequest().authenticated()
-            .and()
-                    .httpBasic()
-            .and()
-                    .exceptionHandling()
-                    .authenticationEntryPoint(customBasicAuthenticationEntryPoint)
-            .and()
-                    .rememberMe().rememberMeServices(springSessionRememberMeServices());
-
-
-        http.sessionManagement()
-                        .sessionFixation().migrateSession()
-                        .maximumSessions(2)
-                        .maxSessionsPreventsLogin(false)
-                        .sessionRegistry(sessionRegistry());
-
-        http.csrf()
-                .disable();
-
-        // Uses CorsConfigurationSource bean defined below
-        http.cors();
-
-        http.authorizeRequests()
-                .antMatchers("/").permitAll()
-            .and()
-                .authorizeRequests().antMatchers("/console/**","/h2-console/**").permitAll();
-        http.headers()
-             .frameOptions().disable();
-
-    }
-
-    @Bean
-    public SpringSessionRememberMeServices springSessionRememberMeServices()
-    {
-        SpringSessionRememberMeServices rememberMeServices = new SpringSessionRememberMeServices();
-        rememberMeServices.setRememberMeParameterName("remember-me");
-        rememberMeServices.setValiditySeconds(ApplicationConstants.REMEMBER_ME_TIMEOUT);
-        return rememberMeServices;
-    }
-
-    //Cors filter to accept incoming requests
-   @Bean
-    CorsConfigurationSource corsConfigurationSource()
-    {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.applyPermitDefaultValues();
-        configuration.setAllowedMethods(Collections.singletonList("*"));
-        configuration.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+		http.authorizeRequests()
+				.antMatchers("/anonymous").anonymous()
+				.antMatchers("/welcome").permitAll()
+				.antMatchers("/users/**").hasAuthority(AuthorityConstants.ADMIN)
+				.antMatchers("/admin**").hasAuthority(AuthorityConstants.ADMIN)
+				.antMatchers("/profile/**").hasAuthority(AuthorityConstants.USER)
+				.antMatchers("/api/**").hasAnyAuthority(AuthorityConstants.API_USER, AuthorityConstants.ADMIN)
+				.antMatchers("/dba/**").hasAuthority(AuthorityConstants.DBA)
+				.anyRequest().authenticated()
+				.and()
+				.httpBasic()
+				.and()
+				.exceptionHandling()
+				.authenticationEntryPoint(customBasicAuthenticationEntryPoint)
+				.and()
+				.rememberMe().rememberMeServices(springSessionRememberMeServices());
 
 
-    @Override
-    public void configure(WebSecurity web)
-    {
-        web
-            .ignoring()
-            .antMatchers(HttpMethod.OPTIONS,"**","/resources/**", "/static/**", "/css/**", "/js/**", "/images/**","/h2-console/**","/console/**");
-    }
+		http.sessionManagement()
+				.sessionFixation().migrateSession()
+				.maximumSessions(2)
+				.maxSessionsPreventsLogin(false)
+				.sessionRegistry(sessionRegistry());
+
+		http.csrf()
+				.disable();
+
+		// Uses CorsConfigurationSource bean defined below
+		http.cors();
+
+		http.authorizeRequests()
+				.antMatchers("/").permitAll()
+				.and()
+				.authorizeRequests().antMatchers("/console/**", "/h2-console/**").permitAll();
+		http.headers()
+				.frameOptions().disable();
+
+	}
+
+	@Bean
+	public SpringSessionRememberMeServices springSessionRememberMeServices()
+	{
+		SpringSessionRememberMeServices rememberMeServices = new SpringSessionRememberMeServices();
+		rememberMeServices.setRememberMeParameterName("remember-me");
+		rememberMeServices.setValiditySeconds(ApplicationConstants.REMEMBER_ME_TIMEOUT);
+		return rememberMeServices;
+	}
+
+	//Cors filter to accept incoming requests
+	@Bean
+	CorsConfigurationSource corsConfigurationSource()
+	{
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.applyPermitDefaultValues();
+		configuration.setAllowedMethods(Collections.singletonList("*"));
+		configuration.setAllowCredentials(true);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", configuration);
+		return source;
+	}
 
 
-    @Bean("authenticationManager")
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception
-    {
-        return super.authenticationManagerBean();
-    }
+	@Override
+	public void configure(WebSecurity web)
+	{
+		web
+				.ignoring()
+				.antMatchers(HttpMethod.OPTIONS, "**", "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/h2-console/**", "/console/**");
+	}
 
-    @Bean
-    public SessionRegistry sessionRegistry()
-    {
-        return new SessionRegistryImpl();
-    }
+
+	@Bean("authenticationManager")
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception
+	{
+		return super.authenticationManagerBean();
+	}
+
+	@Bean
+	public SessionRegistry sessionRegistry()
+	{
+		return new SessionRegistryImpl();
+	}
 
 }

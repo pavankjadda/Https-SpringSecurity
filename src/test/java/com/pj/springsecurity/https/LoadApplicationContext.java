@@ -10,11 +10,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class LoadApplicationContext
 {
 
-    //Executes after Application Context loaded
-    //See more information here https://spring.io/understanding/application-context
-    @Test
-    public void contextLoads()
-    {
-    }
+	//Executes after Application Context loaded
+	//See more information here https://spring.io/understanding/application-context
+	@Test
+	public void contextLoads()
+	{
+	}
 
 }
