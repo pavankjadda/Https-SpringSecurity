@@ -66,6 +66,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure(HttpSecurity http) throws Exception
 	{
+		http.authorizeRequests()
+				.antMatchers("/").permitAll()
+				.and()
+				.authorizeRequests().antMatchers("/console/**", "/h2-console/**").permitAll();
+		http.headers()
+				.frameOptions().disable();
 
 		http.authorizeRequests()
 				.antMatchers("/anonymous").anonymous()
@@ -97,12 +103,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 		// Uses CorsConfigurationSource bean defined below
 		http.cors();
 
-		http.authorizeRequests()
-				.antMatchers("/").permitAll()
-				.and()
-				.authorizeRequests().antMatchers("/console/**", "/h2-console/**").permitAll();
-		http.headers()
-				.frameOptions().disable();
+
 
 	}
 
